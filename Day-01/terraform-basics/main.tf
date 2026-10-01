@@ -14,12 +14,12 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "hardik_bucket" {
-  bucket = "hardik-cloud-terraform-lab-1903"
+  bucket = "hardik-terraform-lab-01"
 }
 
 data "aws_ami" "amazon_linux" {
   most_recent = true
-  owners      = ["137112412989"]
+  owners      = ["152732246241"]
 
   filter {
     name   = "name"
@@ -42,7 +42,7 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
-resource "aws_instance" "hardik_ec2" {
+resource "aws_instance" "lab_ec2" {
   ami           = data.aws_ami.amazon_linux.id
   instance_type = "t3.micro"
 
