@@ -97,7 +97,7 @@ resource "aws_key_pair" "my_key_pair" {
 # Create the EC2 instance and attach the key
 # Creates a server inside the public subnet
 resource "aws_instance" "ec2" {
-  ami                         = "ami-0db1c5c6dc64eb019" # Amazon Linux 2 AMI
+  ami                         = "ami-0d3d85815a9746bc5" # Amazon Linux 2 AMI
   instance_type               = "t3.micro"
   key_name                    = aws_key_pair.my_key_pair.key_name
   subnet_id                   = aws_subnet.public_subnet.id
