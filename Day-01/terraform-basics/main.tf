@@ -19,7 +19,7 @@ resource "aws_s3_bucket" "hardik_bucket" {
 
 data "aws_ami" "amazon_linux" {
   most_recent = true
-  owners      = ["152732246241"]
+  owners      = ["137112412989"]
 
   filter {
     name   = "name"
