@@ -255,9 +255,9 @@ aws ec2 describe-images \
 Example result:
 
 ```text
-ami-0db1c5c6dc64eb019
+ami-0d3d85815a9746bc5
 al2023-ami-2023.12.20260817.0-kernel-6.12-x86_64
-2026-08-12T23:50:59.000Z
+2026-10-02T23:50:59.000Z
 ```
 3. Change the AMI ID in the EC2 resource to the new AMI and run: `terraform plan`  
 Observe that Terraform plans to create the new instance before destroying the old one because of:
@@ -307,12 +307,22 @@ terraform destroy
 - **Explicit dependencies** — Allow you to manually define the order of resource creation when Terraform cannot automatically determine the dependency.
   - **Example:** An S3 bucket using `depends_on = [aws_instance.ec2]` is created only after the EC2 instance exists.
 
+---
 
+## 🎯 Key Takeaway
 
-
-
-
-
-
+Terraform uses configuration, state, and provider information to define the desired infrastructure, track existing resources, and determine what changes are required.
 
 ---
+
+## 👨‍💻 Author
+
+Hardik Darji
+
+> DevOps Engineer
+
+--- 
+
+## ⭐ Support
+
+If you found this Terraform AWS Infrastructure project useful, consider giving it a ⭐ on GitHub.
