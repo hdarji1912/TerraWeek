@@ -170,3 +170,8 @@ resource "aws_s3_bucket" "app_logs" {
     Name = "${local.name_prefix}-app-logs"
   })
 }
+
+# Existing S3 bucket imported into Terraform
+resource "aws_s3_bucket" "logs_bucket" {
+  bucket = "terraweek-import-test-hardik-2026"
+}
