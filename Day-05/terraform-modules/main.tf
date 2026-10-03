@@ -33,7 +33,7 @@ data "aws_availability_zones" "available" {
 # Locals for common values and tags
 locals {
   common_tags = {
-    Project     = "Terraform-Day65"
+    Project     = "Terraform-Day-5"
     Environment = "dev"
     ManagedBy   = "Terraform"
   }
@@ -47,10 +47,10 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "6.0.1"
 
-  name = "terraform-day65-vpc"
+  name = "terraform-day-5-vpc"
   cidr = var.vpc_cidr
 
-  azs            = ["us-east-1a", "us-east-1b"]
+  azs            = ["us-east-2a", "us-east-2b"]
   public_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
 
   private_subnets = ["10.0.3.0/24", "10.0.4.0/24"]
@@ -69,7 +69,7 @@ module "web_sg" {
   source = "./modules/security-group"
 
   vpc_id        = module.vpc.vpc_id
-  sg_name       = "terraform-day65-web-sg"
+  sg_name       = "terraform-day-5-web-sg"
   ingress_ports = [22, 80, 443]
   tags          = local.common_tags
 }
@@ -85,7 +85,7 @@ module "web_server" {
   instance_type      = var.instance_type
   subnet_id          = module.vpc.public_subnets[0]
   security_group_ids = [module.web_sg.sg_id]
-  instance_name      = "terraform-day65-web"
+  instance_name      = "terraform-day-5-web"
   tags               = local.common_tags
 }
 
@@ -100,7 +100,7 @@ module "api_server" {
   instance_type      = var.instance_type
   subnet_id          = module.vpc.public_subnets[0]
   security_group_ids = [module.web_sg.sg_id]
-  instance_name      = "terraform-day65-api"
+  instance_name      = "terraform-day-5-api"
   tags               = local.common_tags
 }
 
@@ -127,7 +127,7 @@ module "api_server" {
 #   enable_dns_hostnames = true
 
 #   tags = merge(local.common_tags, {
-#     Name = "terraform-day65-vpc"
+#     Name = "terraform-day-5-vpc"
 #   })
 # }
 
@@ -140,7 +140,7 @@ module "api_server" {
 #   map_public_ip_on_launch = true
 
 #   tags = merge(local.common_tags, {
-#     Name = "terraform-day65-public-subnet"
+#     Name = "terraform-day-5-public-subnet"
 #   })
 # }
 
@@ -150,7 +150,7 @@ module "api_server" {
 #   vpc_id = aws_vpc.vpc.id
 
 #   tags = merge(local.common_tags, {
-#     Name = "terraform-day65-igw"
+#     Name = "terraform-day-5-igw"
 #   })
 # }
 
@@ -165,7 +165,7 @@ module "api_server" {
 #   }
 
 #   tags = merge(local.common_tags, {
-#     Name = "terraform-day65-public-rt"
+#     Name = "terraform-day-5-public-rt"
 #   })
 # }
 
